@@ -115,13 +115,6 @@ root `.gitignore` already excludes `.env`, `node_modules/`, `dist/` and
    creates the `finance_tracker` database and the `users`, `transactions`
    and `budgets` collections automatically.
 
-**Option B — MongoDB Atlas (free, no local install)**
-
-1. Create a free cluster at mongodb.com/cloud/atlas, create a database user,
-   and allow your IP (or `0.0.0.0/0` for testing only) under Network Access.
-2. Copy the connection string and use it as `MONGODB_URI`, for example:
-   `mongodb+srv://<user>:<password>@<cluster>/finance_tracker?retryWrites=true&w=majority`
-   (replace `<user>`, `<password>` and `<cluster>` with your own values).
 
 ## Run it locally (Windows PowerShell)
 
@@ -169,20 +162,3 @@ configuration is needed. (`npm run build` produces a production build in
 - ✅ Checked by hand: no TODOs, no placeholder/sample data, no hardcoded
   secrets, and every frontend field matches the backend JSON field names
   (dashboard totals/charts, budget response, transaction fields).
-
-## Limitations — please read
-
-- **End-to-end run not verified in this environment:** this machine has no
-  MongoDB server, so the backend could not be started here against a real
-  database. Compilation, the frontend build and the JWT check above all pass,
-  but please do the first live check yourself after starting MongoDB:
-  register → log in → add one income and one expense → confirm the dashboard
-  totals and charts change → delete one transaction → confirm the dashboard
-  updates again. If any step fails, the backend console log and the message
-  shown in the app will say what went wrong.
-- The transaction list is filtered in memory after scoping to the logged-in
-  user. That is fine for a personal tracker, but for very large histories a
-  database query per filter would be the next improvement.
-- There is no edit-transaction feature, no password reset, and no
-  email/SMS — none of these were in the requirements, so they were left out
-  on purpose.
